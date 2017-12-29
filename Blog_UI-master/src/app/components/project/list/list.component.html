@@ -1,0 +1,38 @@
+
+
+  <nav class="navbar navbar-light bg-light">
+      
+
+     <div class="navbar-brand"> 
+      <a ><img src="/assets/project.svg" width="30" height="30" class="d-inline-block align-top" alt="">Project</a>
+      <a [routerLink]="['/projects',0]">Add New</a>
+    </div>
+      <div *ngIf="this.hasProject" style="display:inline">
+       <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2 " id="search" type="input" name="search" [(ngModel)]="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0"  (click)="myEvent($event)" type="submit">Search</button>
+        </form>
+
+      </div>
+    </nav>
+<div *ngIf="!this.hasProject">
+  <div class="card" style="margin: 10px">
+    <div class="card-body">
+      <p class="card-text">Project is a collection of tasks. Your team could use a project to coordinate the development of a product, track a project,  and more, depending on your requirements. A project can also be configured to suit the needs of you and your team.</p>
+      <a [routerLink]="['/projects',0]" class="btn btn-primary">Create New Project </a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="this.hasProject">
+ <li *ngFor="let item of projects" [routerLink]="['/projects',item.getname()]"  >
+    <div class="card" style="margin: 10px">
+        <div class="card-body">
+          <h4 class="card-title">{{ item.getname() }}</h4>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a [routerLink]="['/projects',item.getname()]" class="btn btn-primary">Show More</a>
+        </div>
+      </div>
+</li>
+</div>
+
